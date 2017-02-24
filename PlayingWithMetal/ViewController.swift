@@ -19,10 +19,15 @@ class ViewController: UIViewController {
     var commandQueue: MTLCommandQueue!
     var timer: CADisplayLink!
     
-    var objectToDraw: Triangle!
+   // var objectToDraw: Triangle!
+    var objectToDraw: Cube!
+    
+    var projectionMatrix: Matrix4!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        projectionMatrix = Matrix4.makePerspectiveViewAngle(Matrix4.degrees(toRad: 85.0), aspectRatio: Float(self.view.bounds.size.width / self.view.bounds.size.height), nearZ: 0.01, farZ: 100.0)
         
         device = MTLCreateSystemDefaultDevice()
         metalLayer = CAMetalLayer()
@@ -34,7 +39,12 @@ class ViewController: UIViewController {
         
         view.layer.addSublayer(metalLayer)
         
-        objectToDraw = Triangle(device: device)
+        objectToDraw = Cube(device: device)
+        objectToDraw.positionX = 0.0
+        objectToDraw.positionY =  0.0
+        objectToDraw.positionZ = -2.0
+        objectToDraw.rotationZ = Matrix4.degrees(toRad: 45);
+        objectToDraw.scale = 0.5
         
         let defaultLibrary = device.newDefaultLibrary()!
         let fragmentProgram = defaultLibrary.makeFunction(name: "basic_fragment")
@@ -64,7 +74,7 @@ class ViewController: UIViewController {
     func render() {
         
         guard let drawable = metalLayer?.nextDrawable() else { return }
-        objectToDraw.render(commandQueue: commandQueue, pipelineState: pipelineState, drawable: drawable, clearColor: nil)
+        objectToDraw.render(commandQueue: commandQueue, pipelineState: pipelineState, drawable: drawable,projectionMatrix: projectionMatrix, clearColor: nil)
         
     }
 

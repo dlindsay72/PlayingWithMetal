@@ -17,6 +17,7 @@
 		7B4B89E21E60E90100150987 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4B89E11E60E90100150987 /* Vertex.swift */; };
 		7B4B89E41E60E95900150987 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4B89E31E60E95900150987 /* Node.swift */; };
 		7B4B89E91E60EA0900150987 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4B89E81E60EA0900150987 /* Triangle.swift */; };
+		7B4B89EB1E60F1BD00150987 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4B89EA1E60F1BD00150987 /* Cube.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		7B4B89E11E60E90100150987 /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
 		7B4B89E31E60E95900150987 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		7B4B89E81E60EA0900150987 /* Triangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
+		7B4B89EA1E60F1BD00150987 /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +95,6 @@
 		7B4B89E61E60E9D400150987 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7B4B89E81E60EA0900150987 /* Triangle.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -103,6 +104,8 @@
 			children = (
 				7B4B89E31E60E95900150987 /* Node.swift */,
 				7B4B89E11E60E90100150987 /* Vertex.swift */,
+				7B4B89E81E60EA0900150987 /* Triangle.swift */,
+				7B4B89EA1E60F1BD00150987 /* Cube.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				7B4B89E01E60E82D00150987 /* Matrix4.m in Sources */,
 				7B4B89CC1E60DECB00150987 /* ViewController.swift in Sources */,
 				7B4B89E41E60E95900150987 /* Node.swift in Sources */,
+				7B4B89EB1E60F1BD00150987 /* Cube.swift in Sources */,
 				7B4B89E21E60E90100150987 /* Vertex.swift in Sources */,
 				7B4B89E91E60EA0900150987 /* Triangle.swift in Sources */,
 				7B4B89CA1E60DECB00150987 /* AppDelegate.swift in Sources */,
