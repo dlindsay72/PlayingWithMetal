@@ -13,6 +13,10 @@
 		7B4B89D11E60DECB00150987 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B4B89D01E60DECB00150987 /* Assets.xcassets */; };
 		7B4B89D41E60DECB00150987 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B4B89D21E60DECB00150987 /* LaunchScreen.storyboard */; };
 		7B4B89DC1E60E17B00150987 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 7B4B89DB1E60E17B00150987 /* Shaders.metal */; };
+		7B4B89E01E60E82D00150987 /* Matrix4.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4B89DF1E60E82D00150987 /* Matrix4.m */; };
+		7B4B89E21E60E90100150987 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4B89E11E60E90100150987 /* Vertex.swift */; };
+		7B4B89E41E60E95900150987 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4B89E31E60E95900150987 /* Node.swift */; };
+		7B4B89E91E60EA0900150987 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4B89E81E60EA0900150987 /* Triangle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,12 @@
 		7B4B89D31E60DECB00150987 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B4B89D51E60DECB00150987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B4B89DB1E60E17B00150987 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		7B4B89DD1E60E82C00150987 /* PlayingWithMetal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlayingWithMetal-Bridging-Header.h"; sourceTree = "<group>"; };
+		7B4B89DE1E60E82D00150987 /* Matrix4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix4.h; sourceTree = "<group>"; };
+		7B4B89DF1E60E82D00150987 /* Matrix4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Matrix4.m; sourceTree = "<group>"; };
+		7B4B89E11E60E90100150987 /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		7B4B89E31E60E95900150987 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		7B4B89E81E60EA0900150987 /* Triangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +66,45 @@
 		7B4B89C81E60DECB00150987 /* PlayingWithMetal */ = {
 			isa = PBXGroup;
 			children = (
-				7B4B89C91E60DECB00150987 /* AppDelegate.swift */,
-				7B4B89CB1E60DECB00150987 /* ViewController.swift */,
+				7B4B89E71E60E9DA00150987 /* Model */,
+				7B4B89E61E60E9D400150987 /* View */,
+				7B4B89E51E60E9C900150987 /* Controller */,
 				7B4B89CD1E60DECB00150987 /* Main.storyboard */,
 				7B4B89D01E60DECB00150987 /* Assets.xcassets */,
 				7B4B89D21E60DECB00150987 /* LaunchScreen.storyboard */,
 				7B4B89D51E60DECB00150987 /* Info.plist */,
 				7B4B89DB1E60E17B00150987 /* Shaders.metal */,
+				7B4B89DE1E60E82D00150987 /* Matrix4.h */,
+				7B4B89DF1E60E82D00150987 /* Matrix4.m */,
+				7B4B89DD1E60E82C00150987 /* PlayingWithMetal-Bridging-Header.h */,
 			);
 			path = PlayingWithMetal;
+			sourceTree = "<group>";
+		};
+		7B4B89E51E60E9C900150987 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7B4B89C91E60DECB00150987 /* AppDelegate.swift */,
+				7B4B89CB1E60DECB00150987 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		7B4B89E61E60E9D400150987 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7B4B89E81E60EA0900150987 /* Triangle.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		7B4B89E71E60E9DA00150987 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7B4B89E31E60E95900150987 /* Node.swift */,
+				7B4B89E11E60E90100150987 /* Vertex.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -100,6 +140,7 @@
 					7B4B89C51E60DECB00150987 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 999T2QHS45;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -141,7 +182,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B4B89DC1E60E17B00150987 /* Shaders.metal in Sources */,
+				7B4B89E01E60E82D00150987 /* Matrix4.m in Sources */,
 				7B4B89CC1E60DECB00150987 /* ViewController.swift in Sources */,
+				7B4B89E41E60E95900150987 /* Node.swift in Sources */,
+				7B4B89E21E60E90100150987 /* Vertex.swift in Sources */,
+				7B4B89E91E60EA0900150987 /* Triangle.swift in Sources */,
 				7B4B89CA1E60DECB00150987 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,11 +310,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 999T2QHS45;
 				INFOPLIST_FILE = PlayingWithMetal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.omnificCondition.PlayingWithMetal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PlayingWithMetal/PlayingWithMetal-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -278,11 +326,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 999T2QHS45;
 				INFOPLIST_FILE = PlayingWithMetal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.omnificCondition.PlayingWithMetal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PlayingWithMetal/PlayingWithMetal-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

@@ -14,16 +14,12 @@ class ViewController: UIViewController {
     
     var device: MTLDevice!
     var metalLayer: CAMetalLayer!
-    var vertexBuffer: MTLBuffer!
+    
     var pipelineState: MTLRenderPipelineState!
     var commandQueue: MTLCommandQueue!
     var timer: CADisplayLink!
     
-    let vertexData: [Float] = [
-        0.0, 1.0, 0.0,
-        -1.0, -1.0, 0.0,
-        1.0, -1.0, 0.0
-    ]
+    var objectToDraw: Triangle!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +34,7 @@ class ViewController: UIViewController {
         
         view.layer.addSublayer(metalLayer)
         
-        let dataSize = vertexData.count * MemoryLayout.size(ofValue: vertexData[0])
-        vertexBuffer = device.makeBuffer(bytes: vertexData, length: dataSize, options: [])
+        objectToDraw = Triangle(device: device)
         
         let defaultLibrary = device.newDefaultLibrary()!
         let fragmentProgram = defaultLibrary.makeFunction(name: "basic_fragment")
@@ -69,22 +64,8 @@ class ViewController: UIViewController {
     func render() {
         
         guard let drawable = metalLayer?.nextDrawable() else { return }
+        objectToDraw.render(commandQueue: commandQueue, pipelineState: pipelineState, drawable: drawable, clearColor: nil)
         
-        let renderPassDescriptor = MTLRenderPassDescriptor()
-        renderPassDescriptor.colorAttachments[0].texture = drawable.texture
-        renderPassDescriptor.colorAttachments[0].loadAction = .clear
-        renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColor(red: 0.0, green: 104.0/255.0, blue: 5.0/255.0, alpha: 1.0)
-        
-        let commandBuffer = commandQueue.makeCommandBuffer()
-        
-        let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
-        renderEncoder.setRenderPipelineState(pipelineState)
-        renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, at: 0)
-        renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 3, instanceCount: 1)
-        renderEncoder.endEncoding()
-        
-        commandBuffer.present(drawable)
-        commandBuffer.commit()
     }
 
     override func didReceiveMemoryWarning() {
