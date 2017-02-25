@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     var pipelineState: MTLRenderPipelineState!
     var commandQueue: MTLCommandQueue!
     var timer: CADisplayLink!
+    var lastFrameTimestamp: CFTimeInterval = 0.0
     
    // var objectToDraw: Triangle!
     var objectToDraw: Cube!
@@ -40,11 +41,11 @@ class ViewController: UIViewController {
         view.layer.addSublayer(metalLayer)
         
         objectToDraw = Cube(device: device)
-        objectToDraw.positionX = 0.0
-        objectToDraw.positionY =  0.0
-        objectToDraw.positionZ = -2.0
-        objectToDraw.rotationZ = Matrix4.degrees(toRad: 45);
-        objectToDraw.scale = 0.5
+//        objectToDraw.positionX = 0.0
+//        objectToDraw.positionY =  0.0
+//        objectToDraw.positionZ = -2.0
+//        objectToDraw.rotationZ = Matrix4.degrees(toRad: 45);
+//        objectToDraw.scale = 0.5
         
         let defaultLibrary = device.newDefaultLibrary()!
         let fragmentProgram = defaultLibrary.makeFunction(name: "basic_fragment")
@@ -59,13 +60,33 @@ class ViewController: UIViewController {
         
         commandQueue = device.makeCommandQueue()
         
-        timer = CADisplayLink(target: self, selector: #selector(ViewController.gameloop))
+        timer = CADisplayLink(target: self, selector: #selector(ViewController.newFrame(displayLink:)))
         timer.add(to: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
         
         
     }
     
-    func gameloop() {
+    func newFrame(displayLink: CADisplayLink){
+        
+        if lastFrameTimestamp == 0.0
+        {
+            lastFrameTimestamp = displayLink.timestamp
+        }
+        
+        // 2
+        let elapsed: CFTimeInterval = displayLink.timestamp - lastFrameTimestamp
+        lastFrameTimestamp = displayLink.timestamp
+        
+        // 3
+        gameloop(timeSinceLastUpdate: elapsed)
+    }
+    
+    func gameloop(timeSinceLastUpdate: CFTimeInterval) {
+        
+        // 4
+        objectToDraw.updateWithDelta(delta: timeSinceLastUpdate)
+        
+        // 5
         autoreleasepool {
             self.render()
         }
@@ -74,7 +95,11 @@ class ViewController: UIViewController {
     func render() {
         
         guard let drawable = metalLayer?.nextDrawable() else { return }
-        objectToDraw.render(commandQueue: commandQueue, pipelineState: pipelineState, drawable: drawable,projectionMatrix: projectionMatrix, clearColor: nil)
+        let worldModelMatrix = Matrix4()
+        worldModelMatrix.translate(0.0, y: 0.0, z: -7.0)
+        worldModelMatrix.rotateAroundX(Matrix4.degrees(toRad: 25), y: 0.0, z: 0.0)
+        
+        objectToDraw.render(commandQueue: commandQueue, pipelineState: pipelineState, drawable: drawable, parentModelViewMatrix: worldModelMatrix, projectionMatrix: projectionMatrix ,clearColor: nil)
         
     }
 
