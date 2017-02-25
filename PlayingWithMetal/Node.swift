@@ -56,6 +56,8 @@ class Node {
         let commandBuffer = commandQueue.makeCommandBuffer()
         
         let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
+        //For now cull mode is used instead of depth buffer
+        renderEncoder.setCullMode(MTLCullMode.front)
         renderEncoder.setRenderPipelineState(pipelineState)
         renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, at: 0)
         // 1
